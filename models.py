@@ -36,14 +36,17 @@ class GestorInventario:
     def filtrar_por_nombre(self, nombre):
         for linea in self.leer_inventario():
             if linea.strip().split(',')[1] == nombre:
-                return linea.strip()
-            else:
-                return 'No se encontró el producto'
+                linea_array = linea.strip().split(',')
+                linea_resultado = f"ID: {linea_array[0]} | Nombre: {linea_array[1]} | Cantidad: {linea_array[2]} | Precio: ${linea_array[3]}"
+                return linea_resultado
+        return 'No se encontró el producto'
 
     def obtener_por_id(self, id):
         for linea in self.leer_inventario():
             if linea.strip().split(',')[0] == id:
-                return linea.strip()
+                linea_array = linea.strip().split(',')
+                linea_resultado = f"ID: {linea_array[0]} | Nombre: {linea_array[1]} | Cantidad: {linea_array[2]} | Precio: ${linea_array[3]}"
+                return linea_resultado
         return 'No se encontró el producto'
     
     def actualizar_cantidad(self, id, nueva_cantidad):
